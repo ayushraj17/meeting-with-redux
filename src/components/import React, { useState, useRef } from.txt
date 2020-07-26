@@ -1,0 +1,36 @@
+import React, { useState, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { changeDate } from "../actions";
+import Moment from "react-moment";
+function ShowMeeting() {
+	const date = useSelector((state) => state.date);
+	const [counter, setCounter] = useState(0);
+	// const [value, setValue] = useState(date);
+	const dispatch = useDispatch();
+
+	const handleDate = () => {
+		// console.log(e.target.value);
+		dispatch(changeDate(refer.current.state.content));
+		setCounter(0);
+	};
+	const refer = useRef();
+
+	return (
+		<div>
+			<button onClick={() => setCounter((count) => count - 1)}>-</button>
+			<Moment
+				// date={date}
+				ref={refer}
+				add={{ days: [counter] }}
+				format="YYYY-MM-DD"
+				// onChange={(val) => dispatch(changeDate(val))}
+			>
+				{date}
+			</Moment>
+			<button onClick={() => setCounter((count) => count + 1)}>+</button>
+			<button onClick={handleDate}>sumbit</button>
+		</div>
+	);
+}
+
+export default ShowMeeting;
